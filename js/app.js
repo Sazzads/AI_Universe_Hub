@@ -8,12 +8,12 @@ const loadTools = async () => {
 const displayTools = tools => {
     const toolsContainer = document.getElementById('tool-container');
 
-
+    //display 6 carts
+    // tools=tools.slice(0,6);
 
     tools.forEach(tool => {
 
         const { id, name, features, image, published_in } = tool
-
 
         const toolDiv = document.createElement('div');
         toolDiv.classList.add('col');
@@ -30,15 +30,19 @@ const displayTools = tools => {
         <div class="d-flex justify-content-between">
     <div class="card-text"><i class="fa-solid fa-calendar-days"></i>${published_in}</div>
     <div>
-        <i class="fa-solid fa-arrow-right btn btn-danger rounded-circle"></i>
+        <button type="button"  class=" btn btn-danger rounded-circle" data-bs-toggle="modal" data-bs-target="#toolDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
+      
     </div>
 </div>
       </div>
     </div>
        `;
         toolsContainer.appendChild(toolDiv);
-    })
+    });
+    // toggleSpinner(false);
 }
+
+
 
 const listItemShow = (ai) => {
     let itemHtml = '';
@@ -48,6 +52,23 @@ const listItemShow = (ai) => {
     })
     return itemHtml;
 }
+
+document.getElementById('see-more').addEventListener('click',function(){
+    console.log('clicked');
+    // toggleSpinner(true)
+    
+})
+
+// const toggleSpinner = isLoading => {
+//     const loaderSection = document.getElementById('loader');
+//     if (isLoading) {
+//         loaderSection.classList.remove('d-none');
+//     }
+//     else {
+//         loaderSection.classList.add('d-none');
+
+//     }
+// }
 
 
 loadTools();
