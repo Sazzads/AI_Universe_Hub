@@ -1,4 +1,4 @@
-const loadTools = async () => {
+const loadTools = async (t) => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
@@ -8,8 +8,16 @@ const loadTools = async () => {
 const displayTools = tools => {
     const toolsContainer = document.getElementById('tool-container');
 
-    //display 6 carts
-    // tools=tools.slice(0,6);
+    // //display 6 cards
+    // if (tools.length > 6) {
+    //     tools = tools.slice(0, 6);
+    //     const showAll = document.getElementById('see-more')
+    //     showAll.classList.remove('d-none');
+    // }
+    // else {
+    //     showAll.classList.add('d-none');
+
+    // }
 
     tools.forEach(tool => {
 
@@ -30,7 +38,7 @@ const displayTools = tools => {
         <div class="d-flex justify-content-between">
     <div class="card-text"><i class="fa-solid fa-calendar-days"></i>${published_in}</div>
     <div>
-        <button type="button"  class=" btn btn-danger rounded-circle" data-bs-toggle="modal" data-bs-target="#toolDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
+        <button onclick="loadToolsDetail('${id}')" type="button"  class=" btn btn-danger rounded-circle" data-bs-toggle="modal" data-bs-target="#toolDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
       
     </div>
 </div>
@@ -39,9 +47,13 @@ const displayTools = tools => {
        `;
         toolsContainer.appendChild(toolDiv);
     });
-    // toggleSpinner(false);
+    toggleSpinner(false);
+    // hideSeeMore()
 }
-
+const processt=(datalimit)=>{
+    toggleSpinner(true);
+    loadTools();
+}
 
 
 const listItemShow = (ai) => {
@@ -53,22 +65,36 @@ const listItemShow = (ai) => {
     return itemHtml;
 }
 
-document.getElementById('see-more').addEventListener('click',function(){
+document.getElementById('btn-show-all').addEventListener('click', function () {
     console.log('clicked');
-    // toggleSpinner(true)
-    
+    toggleSpinner(true);
+    processt(6);
 })
 
-// const toggleSpinner = isLoading => {
-//     const loaderSection = document.getElementById('loader');
-//     if (isLoading) {
-//         loaderSection.classList.remove('d-none');
-//     }
-//     else {
-//         loaderSection.classList.add('d-none');
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none');
+    }
+    else {
+        loaderSection.classList.add('d-none');
 
-//     }
-// }
+    }
+}
 
+
+const loadToolsDetail=async id =>{
+    const url=`https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res=await fetch(url);
+    const data=await res.json();
+    displayToolDetails(data.data)
+}
+// data.data.accuracy.description
+const displayToolDetails=tool=>{
+    console.log(tool);
+    const modalDescription=document.getElementById('accuracy-description');
+    modalDescription.innerText=tool.accuracy.description
+
+}
 
 loadTools();

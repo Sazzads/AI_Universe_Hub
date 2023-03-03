@@ -23,7 +23,7 @@
     </header>
     <!-- header section end -->
     <main>
-        <section  class="container">
+        <section class="container">
             <div id="tool-container" class="row row-cols-1 row-cols-md-3 g-4">
             </div>
 
@@ -31,7 +31,9 @@
 
     </main>
     <footer class="text-center my-5">
-        <button id="see-more" class="btn btn-danger p-3 px-4  mx-auto">See More</button>
+        <div id="see-more" class="d-none">
+            <button id="btn-show-all" class="btn btn-danger p-3 px-4  mx-auto">See More</button>
+        </div>
         <!-- loader  -->
         <section id="loader" class="d-none">
             <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
@@ -43,86 +45,89 @@
 
         <!-- modal  -->
         <section>
-<!-- Button trigger modal -->
+            <!-- Button trigger modal -->
 
-  
-  <!-- Modal -->
-  <div class="modal fade modal-xl" id="toolDetailModal" tabindex="-1" aria-labelledby="toolDetailModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body ">
 
-            <div class="row">
-                <div class="col-sm-6 mb-3 mb-sm-0 ">
-                  <div class="card bg-danger bg-opacity-10">
-                    <div class="card-body">
-                        <!-- 1 column  -->
-                     <div class="row">
-                        <p>ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to simulate human conversation.</p>
-                     </div>
-                     <!-- 3 column  -->
-                     <div class="row">
-                        <div class="card-group">
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                              </div>
-                            </div>
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title">Card title</h5>  
-                              </div>
-                            </div>
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                              </div>
-                            </div>
-                          </div>
-                     </div>
-                     <!-- 2 column  -->
-                     <div class="row">
-                        <div class="row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
-                                
+            <!-- Modal -->
+            <div class="modal fade modal-xl" id="toolDetailModal" tabindex="-1" aria-labelledby="toolDetailModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+
+                            <div class="row">
+                                <div class="col-sm-6 mb-3 mb-sm-0 ">
+                                    <div class="card bg-danger bg-opacity-10">
+                                        <div class="card-body">
+                                            <!-- 1 column  -->
+                                            <div class="row">
+                                                <p id="accuracy-description"></p>
+                                            </div>
+                                            <!-- 3 column  -->
+                                            <div class="row">
+                                                <div class="card-group">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Card title</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Card title</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Card title</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 2 column  -->
+                                            <div class="row">
+                                                <div class="row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Special title treatment</h5>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Special title treatment</h5>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
-                        
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                                            <h5 class="card-title">Special title treatment</h5>
+                                            <p class="card-text">This is a wider card with supporting text below as a
+                                                natural lead-in to additional content. This card has even longer content
+                                                than the first to show that equal height action.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                     </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                        <img src="..." class="card-img-top" alt="...">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
 
-          </div>
-      </div>
-    </div>
-  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
 
