@@ -69,9 +69,21 @@ const displayToolDetails = tool => {
 
     const modalDescription = document.getElementById('accuracy-description');
     modalDescription.innerText = tool.accuracy.description;
-    free = "Free";
+    
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
+    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
+    <span style="color: green;">${c ? c : 'Basic'}</span>
+    `
+    
+    const modalPrice1 = document.getElementById('price-modal-1');
+    modalPrice1.innerHTML = `
+    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
+    <span style="color: green;">${c ? c : 'Basic'}</span>
+    `
+    
+    const modalPrice2 = document.getElementById('price-modal-2');
+    modalPrice2.innerHTML = `
     <span style="color: green;">${p ? p : 'Free of Cost'}</span>
     <span style="color: green;">${c ? c : 'Basic'}</span>
     `
@@ -100,10 +112,10 @@ const spinnerLoader = (value) => {
 }
 // sort by date
 const sortDate = () => {
-    const all = loadData.sort(function (a, b) {
-        const d1 = new Date(a.published_in);
-        const d2 = new Date(b.published_in);
-        return d2 - d1;
+    const all = loadData.sort(function (day1, day2) {
+        const date1 = new Date(day1.published_in);
+        const date2 = new Date(day2.published_in);
+        return date2 - date1;
     });
     displayTools(all);
     document.getElementById("btn-show-all").classList.add("d-none");
