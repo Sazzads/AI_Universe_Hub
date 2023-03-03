@@ -15,8 +15,11 @@ const displayTools = (tools, showAll) => {
         document.getElementById("btn-show-all").classList.remove("d-none");
     }
     tools.forEach(tool => {
+        // console.log(tool)
 
         const { id, name, features, image, published_in } = tool
+        // console.log(features);
+
 
         const toolDiv = document.createElement('div');
         toolDiv.classList.add('col');
@@ -40,10 +43,17 @@ const displayTools = (tools, showAll) => {
       </div>
     </div>
        `;
+
+
         toolsContainer.appendChild(toolDiv);
         spinnerLoader(false);
+
+
+
     });
 };
+
+
 
 const listItemShow = (ai) => {
     let itemHtml = '';
@@ -61,32 +71,54 @@ const loadToolsDetail = async id => {
     displayToolDetails(data.data)
 }
 // data.data.accuracy.description
-const displayToolDetails = tool => {
-    p = tool.pricing[0].price;
-    c = tool.pricing[0].plan;
-    console.log(p);
-    console.log(c);
+const displayToolDetails = datas => {
+    // console.log(datas)
+    p = datas.pricing[0].price;
+    c = datas.pricing[0].plan;
+    // console.log(p);
+    // console.log(c);
 
     const modalDescription = document.getElementById('accuracy-description');
-    modalDescription.innerText = tool.accuracy.description;
-    
+    modalDescription.innerText = datas.accuracy.description;
+
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
     <span style="color: green;">${p ? p : 'Free of Cost'}</span>
     <span style="color: green;">${c ? c : 'Basic'}</span>
     `
-    
+
     const modalPrice1 = document.getElementById('price-modal-1');
     modalPrice1.innerHTML = `
     <span style="color: green;">${p ? p : 'Free of Cost'}</span>
     <span style="color: green;">${c ? c : 'Basic'}</span>
     `
-    
+
     const modalPrice2 = document.getElementById('price-modal-2');
     modalPrice2.innerHTML = `
     <span style="color: green;">${p ? p : 'Free of Cost'}</span>
     <span style="color: green;">${c ? c : 'Basic'}</span>
     `
+    // const features = datas.features;
+    // console.log(features[1].feature_name)
+    // console.log(datas.image_link[0])
+    // console.log(datas.image_link[1])
+    console.log(datas.input_output_examples[0].input)
+    console.log(datas.input_output_examples[0].output)
+
+    const modalImage = document.getElementById("modal-image");
+    modalImage.innerHTML = `
+    <img src="${datas.image_link[0]}" class="card-img-top" alt="...">
+    `;
+    const input_output = document.getElementById("modal-input-output");
+    input_output.innerHTML = `
+    <h5>${datas.input_output_examples[0].input}</h5>
+    <p>${datas.input_output_examples[0].output}</p>
+    `;
+
+
+
+
+
 
 
 
