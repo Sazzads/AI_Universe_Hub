@@ -15,25 +15,14 @@
 </head>
 
 
-<body>
+<body onload="loadTools(6)">
     <header class="text-center mb-5">
         <!-- header section start -->
         <h1 class="text-center mt-5 mb-3 fw-bold">AI Universe Hub</h1>
-        <button class="btn btn-danger p-3 px-4  mx-auto">Sort By Date</button>
+        <button onclick="sortDate()" class="btn btn-danger p-3 px-4  mx-auto">Sort By Date</button>
     </header>
     <!-- header section end -->
     <main>
-        <section class="container">
-            <div id="tool-container" class="row row-cols-1 row-cols-md-3 g-4">
-            </div>
-
-        </section>
-
-    </main>
-    <footer class="text-center my-5">
-        <div id="see-more" class="d-none">
-            <button id="btn-show-all" class="btn btn-danger p-3 px-4  mx-auto">See More</button>
-        </div>
         <!-- loader  -->
         <section id="loader" class="d-none">
             <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
@@ -42,6 +31,21 @@
                 </div>
             </div>
         </section>
+        <section class="container">
+            <div id="tool-container" class="row row-cols-1 row-cols-md-3 g-4">
+            </div>
+
+        </section>
+
+    </main>
+    <footer class="text-center my-5">
+
+        <div id="see-more" class="">
+            <button onclick="showButtonClick()" id="btn-show-all" class="btn btn-danger p-3 px-4  mx-auto">See
+                More</button>
+        </div>
+
+
 
         <!-- modal  -->
         <section>
@@ -71,7 +75,7 @@
                                                 <div class="card-group">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
+                                                            <h5 class="card-title" id="price-modal-0"></h5>
                                                         </div>
                                                     </div>
                                                     <div class="card">

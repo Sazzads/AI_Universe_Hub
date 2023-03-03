@@ -1,24 +1,19 @@
-const loadTools = async (t) => {
+const loadTools = async (showAll) => {
+    spinnerLoader(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    displayTools(data.data.tools);
+    loadData = data.data.tools;
+    displayTools(data.data.tools, showAll);
 }
 
-const displayTools = tools => {
+const displayTools = (tools, showAll) => {
     const toolsContainer = document.getElementById('tool-container');
-
-    // //display 6 cards
-    // if (tools.length > 6) {
-    //     tools = tools.slice(0, 6);
-    //     const showAll = document.getElementById('see-more')
-    //     showAll.classList.remove('d-none');
-    // }
-    // else {
-    //     showAll.classList.add('d-none');
-
-    // }
-
+    toolsContainer.innerHTML = '';
+    if (showAll && tools.length > 6) {
+        tools = tools.slice(0, 6);
+        document.getElementById("btn-show-all").classList.remove("d-none");
+    }
     tools.forEach(tool => {
 
         const { id, name, features, image, published_in } = tool
@@ -46,15 +41,9 @@ const displayTools = tools => {
     </div>
        `;
         toolsContainer.appendChild(toolDiv);
+        spinnerLoader(false);
     });
-    toggleSpinner(false);
-    // hideSeeMore()
-}
-const processt=(datalimit)=>{
-    toggleSpinner(true);
-    loadTools();
-}
-
+};
 
 const listItemShow = (ai) => {
     let itemHtml = '';
@@ -65,36 +54,57 @@ const listItemShow = (ai) => {
     return itemHtml;
 }
 
-document.getElementById('btn-show-all').addEventListener('click', function () {
-    console.log('clicked');
-    toggleSpinner(true);
-    processt(6);
-})
-
-const toggleSpinner = isLoading => {
-    const loaderSection = document.getElementById('loader');
-    if (isLoading) {
-        loaderSection.classList.remove('d-none');
-    }
-    else {
-        loaderSection.classList.add('d-none');
-
-    }
-}
-
-
-const loadToolsDetail=async id =>{
-    const url=`https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    const res=await fetch(url);
-    const data=await res.json();
+const loadToolsDetail = async id => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
     displayToolDetails(data.data)
 }
 // data.data.accuracy.description
-const displayToolDetails=tool=>{
-    console.log(tool);
-    const modalDescription=document.getElementById('accuracy-description');
-    modalDescription.innerText=tool.accuracy.description
+const displayToolDetails = tool => {
+    p = tool.pricing[0].price;
+    c = tool.pricing[0].plan;
+    console.log(p);
+    console.log(c);
+
+    const modalDescription = document.getElementById('accuracy-description');
+    modalDescription.innerText = tool.accuracy.description;
+    free = "Free";
+    const modalPrice0 = document.getElementById('price-modal-0');
+    modalPrice0.innerHTML = `
+    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
+    <span style="color: green;">${c ? c : 'Basic'}</span>
+    `
+
+
+
+
+}
+const showButtonClick = () => {
+    loadTools();
+    spinnerLoader
+    document.getElementById("btn-show-all").classList.add("d-none");
 
 }
 
-loadTools();
+// loader
+const spinnerLoader = (value) => {
+    const spiner = document.getElementById("loader");
+    if (value) {
+        spiner.classList.remove("d-none");
+    }
+    else {
+        spiner.classList.add("d-none");
+
+    }
+}
+// sort by date
+const sortDate = () => {
+    const all = loadData.sort(function (a, b) {
+        const d1 = new Date(a.published_in);
+        const d2 = new Date(b.published_in);
+        return d2 - d1;
+    });
+    displayTools(all);
+    document.getElementById("btn-show-all").classList.add("d-none");
+}
