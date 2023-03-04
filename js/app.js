@@ -85,12 +85,23 @@ const showIntrigration = (intri) => {
     }
     return itemHtml;
 }
+const accuracyShow = (accuracy) => {
+    let accuracyHtml = '';
+    if (accuracy.score !== null) {
+        accuracyHtml = `
+        <h5 class="bg-danger px-2 py-1 m-1 ">${accuracy.score * 100}% accuracy</h5>`;
+    }
+    return accuracyHtml;
+}
 
 // data.data.accuracy.description
 const displayToolDetails = datas => {
     // console.log(datas)
     // console.log(p);
     // console.log(c);
+
+    const modalDescription = document.getElementById('accuracy-description');
+    modalDescription.innerText = datas.accuracy.description;
 
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
@@ -112,6 +123,8 @@ const displayToolDetails = datas => {
     const intregationPart = document.getElementById('intregation');
     intregationPart.innerHTML = `
     ${showIntrigration(datas.integrations)}
+
+    
 `;
 
 
