@@ -85,7 +85,9 @@ const showIntrigration = (intri) => {
     }
     return itemHtml;
 }
-const accuracyShow = (accuracy) => {
+
+//accuracy function code
+const accuracyShowFunc = (accuracy) => {
     let accuracyHtml = '';
     if (accuracy.score !== null) {
         accuracyHtml = `
@@ -100,9 +102,12 @@ const displayToolDetails = datas => {
     // console.log(p);
     // console.log(c);
 
+
+    //modal title code
     const modalDescription = document.getElementById('accuracy-description');
     modalDescription.innerText = datas.accuracy.description;
 
+    //modal price code
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
     <span style="color: green;">${datas.pricing ? datas.pricing[0].price : 'Free of Cost/'}</span>
@@ -123,16 +128,16 @@ const displayToolDetails = datas => {
 
     console.log(datas.features[1].feature_name)
 
-
-    const modalFeatures=document.getElementById('modal-features')
-    modalFeatures.innerHTML=`
+//modalFeatures code
+    const modalFeatures = document.getElementById('modal-features')
+    modalFeatures.innerHTML = `
     <li >${datas.features[1].feature_name}</li>
     <li>${datas.features[2].feature_name}</li>
     <li>${datas.features[3].feature_name}</li>
-    <li>${datas.features[4]?datas.features[4].feature_name:''}</li>
+    <li>${datas.features[4] ? datas.features[4].feature_name : ''}</li>
     `;
 
-    //interations
+    //intregation code function
     const intregationPart = document.getElementById('intregation');
     intregationPart.innerHTML = `
     ${showIntrigration(datas.integrations)}
@@ -140,34 +145,25 @@ const displayToolDetails = datas => {
 
 `;
 
-
-    // const features = datas.features;
-    // console.log(datas.features[1].feature_name)
-    // console.log(datas.image_link[0])
-    // console.log(datas.image_link[1])
-    // console.log(datas.input_output_examples)
-    // console.log(datas.input_output_examples[0].output)
-    // const accuracy = (datas.accuracy.score) * 100;
-    // const accuracyParcent=(accuracy + '% accuracy');
-    // console.log(accuracyParcent);
-
+    //modal image code
     const modalImage = document.getElementById("modal-image");
     modalImage.innerHTML = `
     <div class="position-relative">
     <div class="position-absolute top-0 end-0 " >
-   ${accuracyShow(datas.accuracy)}
+   ${accuracyShowFunc(datas.accuracy)}
     </div>
     <img src="${datas.image_link[0]}" class="card-img-top" alt="...">
   </div>
-    
-
     `;
+
+    // modal input output section 
     const input_output = document.getElementById("modal-input-output");
     input_output.innerHTML = `
     <h5>${datas.input_output_examples ? datas.input_output_examples[0].input : 'No! Not Yet! Take a break!!!'}</h5>
     <p>${datas.input_output_examples ? datas.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
     `;
 }
+//spinner btn
 const showButtonClick = () => {
     loadTools();
     spinnerLoader
@@ -175,9 +171,7 @@ const showButtonClick = () => {
 
 }
 
-
-
-// loader
+// loader spinner add
 const spinnerLoader = (value) => {
     const spiner = document.getElementById("loader");
     if (value) {
