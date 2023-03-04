@@ -105,19 +105,19 @@ const displayToolDetails = datas => {
 
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
-    <span style="color: green;">${datas.pricing ? datas.pricing[0].price : 'Free of Cost'}</span>
+    <span style="color: green;">${datas.pricing ? datas.pricing[0].price : 'Free of Cost/'}</span>
     <span style="color: green;">${datas.pricing ? datas.pricing[0].plan : 'Basic'}</span>
     `
 
     const modalPrice1 = document.getElementById('price-modal-1');
     modalPrice1.innerHTML = `
-    <span style="color: orange;">${datas.pricing ? datas.pricing[1].price : 'Free of Cost'}</span>
+    <span style="color: orange;">${datas.pricing ? datas.pricing[1].price : 'Free of Cost/'}</span>
     <span style="color: orange;">${datas.pricing ? datas.pricing[1].plan : 'Pro'}</span>
     `
 
     const modalPrice2 = document.getElementById('price-modal-2');
     modalPrice2.innerHTML = `
-    <span style="color: tomato;">${datas.pricing ? datas.pricing[2].price : 'Free of Cost'}</span>
+    <span style="color: tomato;">${datas.pricing ? datas.pricing[2].price : 'Free of Cost/'}</span>
     <span style="color: tomato;">${datas.pricing ? datas.pricing[2].plan : 'Enterprise'}</span>
     `
 
@@ -164,8 +164,8 @@ const displayToolDetails = datas => {
     `;
     const input_output = document.getElementById("modal-input-output");
     input_output.innerHTML = `
-    <h5>${datas.input_output_examples ? datas.input_output_examples[0].input : 'No ! Not yet Take Break !!'}</h5>
-    <p>${datas.input_output_examples ? datas.input_output_examples[0].output : 'No ! Not yet Take Break !!'}</p>
+    <h5>${datas.input_output_examples ? datas.input_output_examples[0].input : 'No! Not Yet! Take a break!!!'}</h5>
+    <p>${datas.input_output_examples ? datas.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
     `;
 }
 const showButtonClick = () => {
