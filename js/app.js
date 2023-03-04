@@ -72,7 +72,7 @@ const loadToolsDetail = async id => {
 }
 // intrigation
 const showIntrigration = (intri) => {
-    console.log(intri);
+    // console.log(intri);
     let itemHtml = '';
     if (intri === null) {
         itemHtml = `<li>no data found</li>`
@@ -120,16 +120,29 @@ const displayToolDetails = datas => {
     <span style="color: tomato;">${datas.pricing ? datas.pricing[2].price : 'Free of Cost'}</span>
     <span style="color: tomato;">${datas.pricing ? datas.pricing[2].plan : 'Enterprise'}</span>
     `
+
+    console.log(datas.features[1].feature_name)
+
+
+    const modalFeatures=document.getElementById('modal-features')
+    modalFeatures.innerHTML=`
+    <li >${datas.features[1].feature_name}</li>
+    <li>${datas.features[2].feature_name}</li>
+    <li>${datas.features[3].feature_name}</li>
+    <li>${datas.features[4]?datas.features[4].feature_name:''}</li>
+    `;
+
+    //interations
     const intregationPart = document.getElementById('intregation');
     intregationPart.innerHTML = `
     ${showIntrigration(datas.integrations)}
 
-    
+
 `;
 
 
     // const features = datas.features;
-    // console.log(features[1].feature_name)
+    // console.log(datas.features[1].feature_name)
     // console.log(datas.image_link[0])
     // console.log(datas.image_link[1])
     // console.log(datas.input_output_examples)
