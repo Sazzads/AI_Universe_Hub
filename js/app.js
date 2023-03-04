@@ -70,59 +70,77 @@ const loadToolsDetail = async id => {
     const data = await res.json();
     displayToolDetails(data.data)
 }
+// intrigation
+const showIntrigration = (intri) => {
+    console.log(intri);
+    let itemHtml = '';
+    if (intri === null) {
+        itemHtml = `<li>no data found</li>`
+    }
+    else {
+        intri.forEach(item => {
+            itemHtml += `<li>${item}</li>`
+
+        });
+    }
+    return itemHtml;
+}
+
 // data.data.accuracy.description
 const displayToolDetails = datas => {
     // console.log(datas)
-    p = datas.pricing[0].price;
-    c = datas.pricing[0].plan;
     // console.log(p);
     // console.log(c);
 
-    const modalDescription = document.getElementById('accuracy-description');
-    modalDescription.innerText = datas.accuracy.description;
-
     const modalPrice0 = document.getElementById('price-modal-0');
     modalPrice0.innerHTML = `
-    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
-    <span style="color: green;">${c ? c : 'Basic'}</span>
+    <span style="color: green;">${datas.pricing ? datas.pricing[0].price : 'Free of Cost'}</span>
+    <span style="color: green;">${datas.pricing ? datas.pricing[0].plan : 'Basic'}</span>
     `
 
     const modalPrice1 = document.getElementById('price-modal-1');
     modalPrice1.innerHTML = `
-    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
-    <span style="color: green;">${c ? c : 'Basic'}</span>
+    <span style="color: orange;">${datas.pricing ? datas.pricing[1].price : 'Free of Cost'}</span>
+    <span style="color: orange;">${datas.pricing ? datas.pricing[1].plan : 'Pro'}</span>
     `
 
     const modalPrice2 = document.getElementById('price-modal-2');
     modalPrice2.innerHTML = `
-    <span style="color: green;">${p ? p : 'Free of Cost'}</span>
-    <span style="color: green;">${c ? c : 'Basic'}</span>
+    <span style="color: tomato;">${datas.pricing ? datas.pricing[2].price : 'Free of Cost'}</span>
+    <span style="color: tomato;">${datas.pricing ? datas.pricing[2].plan : 'Enterprise'}</span>
     `
+    const intregationPart = document.getElementById('intregation');
+    intregationPart.innerHTML = `
+    ${showIntrigration(datas.integrations)}
+`;
+
+
     // const features = datas.features;
     // console.log(features[1].feature_name)
     // console.log(datas.image_link[0])
     // console.log(datas.image_link[1])
-    console.log(datas.input_output_examples[0].input)
-    console.log(datas.input_output_examples[0].output)
+    // console.log(datas.input_output_examples)
+    // console.log(datas.input_output_examples[0].output)
+    // const accuracy = (datas.accuracy.score) * 100;
+    // const accuracyParcent=(accuracy + '% accuracy');
+    // console.log(accuracyParcent);
 
     const modalImage = document.getElementById("modal-image");
     modalImage.innerHTML = `
+    <div class="position-relative">
+    <div class="position-absolute top-0 end-0 " >
+   ${accuracyShow(datas.accuracy)}
+    </div>
     <img src="${datas.image_link[0]}" class="card-img-top" alt="...">
+  </div>
+    
+
     `;
     const input_output = document.getElementById("modal-input-output");
     input_output.innerHTML = `
-    <h5>${datas.input_output_examples[0].input}</h5>
-    <p>${datas.input_output_examples[0].output}</p>
+    <h5>${datas.input_output_examples ? datas.input_output_examples[0].input : 'No ! Not yet Take Break !!'}</h5>
+    <p>${datas.input_output_examples ? datas.input_output_examples[0].output : 'No ! Not yet Take Break !!'}</p>
     `;
-
-
-
-
-
-
-
-
-
 }
 const showButtonClick = () => {
     loadTools();
@@ -130,6 +148,8 @@ const showButtonClick = () => {
     document.getElementById("btn-show-all").classList.add("d-none");
 
 }
+
+
 
 // loader
 const spinnerLoader = (value) => {
@@ -142,6 +162,8 @@ const spinnerLoader = (value) => {
 
     }
 }
+
+
 // sort by date
 const sortDate = () => {
     const all = loadData.sort(function (day1, day2) {
